@@ -17,7 +17,7 @@ function computerPlay() {
 const computerSelection = computerPlay();
 const playerSelection = "rock";
 
-playRound("rock", computerSelection);
+playRound("paper", computerSelection);
 
 /* 
 Rock beats scissors
@@ -34,7 +34,35 @@ Compare them:
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
+    // Determines it's tie
     console.log("A tie");
     console.log(playerSelection, computerSelection);
+    return "Tie";
+  }
+  // Rock Win/Lose
+  winnerOrLoser(playerSelection, computerSelection, "rock", "paper");
+  // Paper Win/Lose
+  winnerOrLoser(playerSelection, computerSelection, "paper", "scissors");
+  // Scissors Win/Lose
+  winnerOrLoser(playerSelection, computerSelection, "scissors", "rock");
+  function winnerOrLoser(
+    playerSelection,
+    computerSelection,
+    playerArg,
+    computerArg
+  ) {
+    // Determines whether it is a win or not
+    if (playerSelection === playerArg && computerSelection !== computerArg) {
+      console.log("Player Win");
+      console.log(playerSelection, computerSelection);
+      return "Player Win";
+    } else if (
+      playerSelection === playerArg &&
+      computerSelection === computerArg
+    ) {
+      console.log("Player Lose");
+      console.log(playerSelection, computerSelection);
+      return "Player Lose";
+    }
   }
 }

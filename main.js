@@ -15,9 +15,9 @@ function computerPlay() {
 
 // selections
 const computerSelection = computerPlay();
-const playerSelection = "rock";
+const playerSelection = "scissors".toLowerCase();
 
-playRound("paper", computerSelection);
+console.log(playRound(playerSelection, computerSelection));
 
 /* 
 Rock beats scissors
@@ -35,33 +35,34 @@ Compare them:
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     // Determines it's tie
-    console.log("A tie");
-    console.log(playerSelection, computerSelection);
     return "Tie";
   }
+
+  let result;
   // Rock Win/Lose
-  winnerOrLoser(playerSelection, computerSelection, "rock", "paper");
-  // Paper Win/Lose
-  winnerOrLoser(playerSelection, computerSelection, "paper", "scissors");
-  // Scissors Win/Lose
-  winnerOrLoser(playerSelection, computerSelection, "scissors", "rock");
-  function winnerOrLoser(
-    playerSelection,
-    computerSelection,
-    playerArg,
-    computerArg
-  ) {
+  switch (true) {
+    case playerSelection === "rock":
+      result = winnerOrLoser(computerSelection, "paper");
+      return result;
+      break;
+    // Determines whether
+    case playerSelection === "paper":
+      result = winnerOrLoser(computerSelection, "scissors");
+      return result;
+      break;
+    case playerSelection === "scissors":
+      result = winnerOrLoser(computerSelection, "rock");
+      return result;
+      break;
+    default:
+      return "Typo";
+      break;
+  }
+  function winnerOrLoser(computerSelection, computerArg) {
     // Determines whether it is a win or not
-    if (playerSelection === playerArg && computerSelection !== computerArg) {
-      console.log("Player Win");
-      console.log(playerSelection, computerSelection);
+    if (computerSelection !== computerArg) {
       return "Player Win";
-    } else if (
-      playerSelection === playerArg &&
-      computerSelection === computerArg
-    ) {
-      console.log("Player Lose");
-      console.log(playerSelection, computerSelection);
+    } else {
       return "Player Lose";
     }
   }

@@ -13,12 +13,6 @@ function computerPlay() {
   return computerChoiceOfElement;
 }
 
-// selections
-const computerSelection = computerPlay();
-const playerSelection = "scissors".toLowerCase();
-
-console.log(playRound(playerSelection, computerSelection));
-
 /* 
 Rock beats scissors
 Rock tie rock
@@ -38,32 +32,52 @@ function playRound(playerSelection, computerSelection) {
     return "Tie";
   }
 
-  let result;
-  // Rock Win/Lose
-  switch (true) {
-    case playerSelection === "rock":
-      result = winnerOrLoser(computerSelection, "paper");
-      return result;
-      break;
-    // Determines whether
-    case playerSelection === "paper":
-      result = winnerOrLoser(computerSelection, "scissors");
-      return result;
-      break;
-    case playerSelection === "scissors":
-      result = winnerOrLoser(computerSelection, "rock");
-      return result;
-      break;
-    default:
-      return "Typo";
-      break;
-  }
-  function winnerOrLoser(computerSelection, computerArg) {
+  let result = winOrLose(playerSelection, computerSelection);
+  return result;
+
+  // Win/Lose
+  function winOrLose(playerSelection, computerSelection) {
     // Determines whether it is a win or not
-    if (computerSelection !== computerArg) {
-      return "Player Win";
-    } else {
-      return "Player Lose";
+
+    if (playerSelection === "rock") {
+      if (computerSelection !== "paper") {
+        console.log(playerSelection, computerSelection);
+        return "Win";
+      } else {
+        console.log(playerSelection, computerSelection);
+        return "Lose";
+      }
+    }
+    if (playerSelection === "scissors") {
+      if (computerSelection !== "rock") {
+        console.log(playerSelection, computerSelection);
+        return "Win";
+      } else {
+        console.log(playerSelection, computerSelection);
+        return "Lose";
+      }
+    }
+    if (playerSelection === "paper") {
+      if (computerSelection !== "scissors") {
+        console.log(playerSelection, computerSelection);
+        return "Win";
+      } else {
+        console.log(playerSelection, computerSelection);
+        return "Lose";
+      }
     }
   }
 }
+
+// Call playRound()
+// For 5 times, we play
+// If computer >= 5
+// If player >= 5
+// At the end, it reports the loser
+// Prints winner and loser at the end
+
+// selections
+const computerSelection = computerPlay();
+const playerSelection = "scissors".toLowerCase();
+
+console.log(playRound(playerSelection, computerSelection));

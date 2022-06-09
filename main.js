@@ -32,8 +32,7 @@ function playRound(playerSelection, computerSelection) {
     return "Tie";
   }
 
-  let result = winOrLose(playerSelection, computerSelection);
-  return result;
+  return winOrLose(playerSelection, computerSelection);
 
   // Win/Lose
   function winOrLose(playerSelection, computerSelection) {

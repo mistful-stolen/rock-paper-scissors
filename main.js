@@ -40,25 +40,33 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === "rock") {
       if (computerSelection !== "paper") {
+        console.log(`${playerSelection} vs. ${computerSelection}`);
         return "Player";
       } else {
+        console.log(`${playerSelection} vs. ${computerSelection}`);
         return "Computer";
       }
     }
     if (playerSelection === "scissors") {
       if (computerSelection !== "rock") {
+        console.log(`${playerSelection} vs. ${computerSelection}`);
         return "Player";
       } else {
+        console.log(`${playerSelection} vs. ${computerSelection}`);
         return "Computer";
       }
     }
     if (playerSelection === "paper") {
       if (computerSelection !== "scissors") {
+        console.log(`${playerSelection} vs. ${computerSelection}`);
         return "Player";
       } else {
+        console.log(`${playerSelection} vs. ${computerSelection}`);
         return "Computer";
       }
     }
+    // Checks typo
+    return "Typo properly, baka!";
   }
 }
 
@@ -72,23 +80,27 @@ function game() {
   let playerWins = 0;
 
   for (let i = 1; i >= 0; i++) {
+    if (playerWins === 5) {
+      console.log("Player Win!");
+      break;
+    } else if (computerWins === 5) {
+      console.log("Computer Win!");
+      break;
+    }
+
     const computerSelection = computerPlay();
     const playerSelection = window.prompt("Element: ").toLowerCase();
     const resultOfPlayRound = playRound(playerSelection, computerSelection);
     if (resultOfPlayRound === "Player") {
-      if (playerWins >= 5) {
-        break;
-      }
-      console.log(playerWins);
       playerWins++;
+
+      console.log(`One point to the player: ${playerWins}`);
     } else if (resultOfPlayRound === "Computer") {
-      if (computerWins >= 5) {
-        break;
-      }
-      console.log(computerWins);
       computerWins++;
+
+      console.log(`One point to the computer: ${computerWins}`);
     } else {
-      console.log("Tie");
+      console.log(resultOfPlayRound);
     }
   }
 }

@@ -40,29 +40,23 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === "rock") {
       if (computerSelection !== "paper") {
-        console.log(playerSelection, computerSelection);
-        return "Win";
+        return "Player";
       } else {
-        console.log(playerSelection, computerSelection);
-        return "Lose";
+        return "Computer";
       }
     }
     if (playerSelection === "scissors") {
       if (computerSelection !== "rock") {
-        console.log(playerSelection, computerSelection);
-        return "Win";
+        return "Player";
       } else {
-        console.log(playerSelection, computerSelection);
-        return "Lose";
+        return "Computer";
       }
     }
     if (playerSelection === "paper") {
       if (computerSelection !== "scissors") {
-        console.log(playerSelection, computerSelection);
-        return "Win";
+        return "Player";
       } else {
-        console.log(playerSelection, computerSelection);
-        return "Lose";
+        return "Computer";
       }
     }
   }
@@ -70,13 +64,35 @@ function playRound(playerSelection, computerSelection) {
 
 // Call playRound()
 // For 5 times, we play
-// If computer >= 5
-// If player >= 5
 // At the end, it reports the loser
 // Prints winner and loser at the end
 
-// selections
-const computerSelection = computerPlay();
-const playerSelection = "scissors".toLowerCase();
+function game() {
+  let computerWins = 0;
+  let playerWins = 0;
 
-console.log(playRound(playerSelection, computerSelection));
+  for (let i = 1; i >= 0; i++) {
+    const computerSelection = computerPlay();
+    const playerSelection = window.prompt("Element: ").toLowerCase();
+    const resultOfPlayRound = playRound(playerSelection, computerSelection);
+    if (resultOfPlayRound === "Player") {
+      if (playerWins >= 5) {
+        break;
+      }
+      console.log(playerWins);
+      playerWins++;
+    } else if (resultOfPlayRound === "Computer") {
+      if (computerWins >= 5) {
+        break;
+      }
+      console.log(computerWins);
+      computerWins++;
+    } else {
+      console.log("Tie");
+    }
+  }
+}
+
+// selections
+
+game();
